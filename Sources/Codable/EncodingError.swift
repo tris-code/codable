@@ -1,14 +1,3 @@
-/******************************************************************************
- *                                                                            *
- * Tris Foundation disclaims copyright to this source code.                   *
- * In place of a legal notice, here is a blessing:                            *
- *                                                                            *
- *     May you do good and not evil.                                          *
- *     May you find forgiveness for yourself and forgive others.              *
- *     May you share freely, never taking more than you give.                 *
- *                                                                            *
- ******************************************************************************/
-
 public struct EncodingError {
     public let error: Swift.Error
 
@@ -30,7 +19,7 @@ extension EncodingError: Swift.Encoder {
     public var userInfo: [CodingUserInfoKey : Any] { return [:] }
 
     public func container<Key>(
-        keyedBy type: Key.Type) -> KeyedEncodingContainer<Key> 
+        keyedBy type: Key.Type) -> KeyedEncodingContainer<Key>
         where Key: CodingKey
     {
         return KeyedEncodingContainer(KeyedEncodingError(error))
@@ -76,7 +65,7 @@ extension EncodingError: UnkeyedEncodingContainer {
 extension KeyedEncodingError: KeyedEncodingContainerProtocol {
     public var codingPath: [CodingKey] { return [] }
     public var userInfo: [CodingUserInfoKey : Any] { return [:] }
-    
+
     public func encodeNil(forKey key: Key) throws {
         throw error
     }
@@ -94,7 +83,7 @@ extension KeyedEncodingError: KeyedEncodingContainerProtocol {
     }
 
     public func nestedUnkeyedContainer(
-        forKey key: Key) -> UnkeyedEncodingContainer 
+        forKey key: Key) -> UnkeyedEncodingContainer
     {
         return EncodingError(error)
     }
