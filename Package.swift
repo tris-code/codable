@@ -7,7 +7,7 @@ let package = Package(
         .library(name: "Codable", targets: ["Codable"])
     ],
     dependencies: [
-        .package(path: "../Test")
+        .package(path: "../test")
     ],
     targets: [
         .target(
